@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 enum Player {
     
     case x, o
@@ -22,5 +21,4 @@ enum Player {
             return #imageLiteral(resourceName: "XImage")
         }
     }
-    
 }

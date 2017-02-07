@@ -10,6 +10,7 @@ import UIKit
 
 protocol BoardDelegate: class {
     func playerTurn(board: Board, position: Int) -> Player
+    func playDidFinish()
 }
 
 
@@ -29,8 +30,14 @@ class Board: UIView {
     @IBOutlet weak var sevenImageView: UIImageView!
     @IBOutlet weak var eightImageView: UIImageView!
     
+    
+    var xArray : [Int] = []
+    var oArray : [Int] = []
+    
     var position: Int!
     var winner: Player!
+    
+    var won = "y"
     
     weak var delegate: BoardDelegate!
     
@@ -85,6 +92,7 @@ extension Board {
         let player = delegate.playerTurn(board: self, position: imageView.tag)
         imageView.removeGestureRecognizer(sender)
         animateTurn(imageView: imageView, player: player)
+        delegate.playDidFinish()
     }
     
     func animateTurn(imageView: UIImageView, player: Player) {
